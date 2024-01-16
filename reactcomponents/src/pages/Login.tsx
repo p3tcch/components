@@ -16,7 +16,7 @@ function Login({ components }: any) {
     };
     const SubmitUser = () => {
 
-        fetch( api_route + "register",
+        fetch( api_route + "login",
             {
                 method: 'POST',
                 headers: {
@@ -28,7 +28,7 @@ function Login({ components }: any) {
             })
             .then(response => response.json())
             .then(data => {
-                
+
               setLog(data[1]);
             })
             .catch(err => console.error(err));
