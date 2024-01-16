@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+
+import { useState } from 'react';
 
 
-function Login({ components }: any) {
 
+function Register({ components }: any) {
+    
     const api_route = components.url.api;
+    console.log(api_route);
 
-    const [user, setUser] = useState({ username: "", password: "" });
-    const [log, setLog] = useState({ stat: "", txt: [] });
+    const [user, setUser] = useState({username: "", password: ""});
+    const [log, setLog] = useState({stat: "", txt: []});
 
     const getId = (event: React.BaseSyntheticEvent) => {
-        setUser({ username: event.target.value, password: user.password });
+        setUser({username: event.target.value, password: user.password});
     };
     const getPassword = (event: React.BaseSyntheticEvent) => {
-        setUser({ username: user.username, password: event.target.value });
+        setUser({username: user.username, password: event.target.value});
     };
-    const SubmitUser = () => {
+    const  SubmitUser = () => {
 
         fetch( api_route + "register",
             {
@@ -28,22 +31,23 @@ function Login({ components }: any) {
             })
             .then(response => response.json())
             .then(data => {
-                
+
               setLog(data[1]);
+            
             })
             .catch(err => console.error(err));
     }
-    return (
+    return(
         <div>
             <input type="text" onChange={getId}></input>
             <input type="text" onChange={getPassword}></input>
-            <button onClick={SubmitUser}> Login </button>
-
-            {log.txt.map((e, v) => {
+            <button onClick={SubmitUser}> Register </button>
+            
+            { log.txt.map((e, v) => {
                 return <p key={"stat" + v}> {e} </p>
-            })}
+            }) }
 
         </div>
     );
 }
-export default Login;
+export default Register;
