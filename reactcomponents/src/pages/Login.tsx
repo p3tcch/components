@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { urlContext } from '../App';
 
+function Login() {
 
-function Login({ components }: any) {
-
-    const api_route = components.url.api;
+    const url:any = useContext(urlContext);
 
     const [user, setUser] = useState({ username: "", password: "" });
     const [log, setLog] = useState({ stat: "", txt: [] });
@@ -16,7 +16,7 @@ function Login({ components }: any) {
     };
     const SubmitUser = () => {
 
-        fetch( api_route + "login",
+        fetch( url.api + "login",
             {
                 method: 'POST',
                 headers: {

@@ -1,13 +1,12 @@
+import React, { useState, useContext } from "react";
 
-import { useState } from 'react';
-
+import { urlContext } from '../App';
 
 
 function Register({ components }: any) {
     
-    const api_route = components.url.api;
-    console.log(api_route);
-
+    const url:any = useContext(urlContext);
+    
     const [user, setUser] = useState({username: "", password: ""});
     const [log, setLog] = useState({stat: "", txt: []});
 
@@ -19,7 +18,7 @@ function Register({ components }: any) {
     };
     const  SubmitUser = () => {
 
-        fetch( api_route + "register",
+        fetch( url.api + "register",
             {
                 method: 'POST',
                 headers: {
